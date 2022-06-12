@@ -12,7 +12,7 @@ const Button = ({goodHandler, badHandler, neutralHandler}) => {
 }
 
 const StatisticsLine = ({text, value}) => {
-  return <p>{text} {value}</p>
+  return <tr><td>{text}</td><td>{value}</td></tr>
 }
 
 const Statistics = ({good, neutral, bad}) => {
@@ -20,13 +20,15 @@ const Statistics = ({good, neutral, bad}) => {
   const average = good/(good + bad + neutral);
 
   return (
-  <>
-    <StatisticsLine text='good' value={good} />
-    <StatisticsLine text='neutral' value={neutral} />
-    <StatisticsLine text='bad' value={bad} />
-    <StatisticsLine text='all' value={all} />
-    <StatisticsLine text='average' value={average} />
-  </>
+  <table>
+    <tbody>
+      <StatisticsLine text='good' value={good} />
+      <StatisticsLine text='neutral' value={neutral} />
+      <StatisticsLine text='bad' value={bad} />
+      <StatisticsLine text='all' value={all} />
+      <StatisticsLine text='average' value={average} />
+    </tbody>
+  </table>
   );
 }
 
