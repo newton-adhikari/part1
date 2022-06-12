@@ -24,12 +24,20 @@ const App = () => {
     setVotes(copied);
   }
 
+  const mostVoted = votes.reduce((a, b) => {
+    if(b > a) return b;
+    return a;
+  }, 0);
+  
+  const mostVotedAnecdote = votes.findIndex(v => v === mostVoted)
   return (
     <div>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <button onClick={anecdoteVoter}>vote</button>
       <button onClick={anecdoteSwitcher}>next anecdote</button>
+      <h1>Anecdotes with most votes</h1>
+      <p>{anecdotes[mostVotedAnecdote]} has {mostVoted} votes</p>
     </div>
   )
 }
