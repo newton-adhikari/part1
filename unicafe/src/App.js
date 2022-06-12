@@ -1,18 +1,31 @@
 import { useState } from 'react'
 
-const Statistics = props => {
-  const all = props.good + props.neutral + props.bad;
-  const average = props.good/(props.good + props.bad + props.neutral);
+const Button = ({goodHandler, badHandler, neutralHandler}) => {
+  return (
+    <>
+      <button onClick={goodHandler}>good</button>
+      <button onClick={neutralHandler}>neutral</button>
+      <button onClick={badHandler}>bad</button>
+
+    </>
+  )
+}
+
+const StatisticsLine = ({text, value}) => {
+  return <p>{text} {value}</p>
+}
+
+const Statistics = ({good, neutral, bad}) => {
+  const all = good + neutral + bad;
+  const average = good/(good + bad + neutral);
 
   return (
   <>
-      <h1>Statistics</h1>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>all {all}</p>
-      <p>average {average} %</p>
-
+    <StatisticsLine text='good' value={good} />
+    <StatisticsLine text='neutral' value={neutral} />
+    <StatisticsLine text='bad' value={bad} />
+    <StatisticsLine text='all' value={all} />
+    <StatisticsLine text='average' value={average} />
   </>
   );
 }
@@ -46,9 +59,12 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      <button onClick={goodHandler}>good</button>
-      <button onClick={neutralHandler}>neutral</button>
-      <button onClick={badHandler}>bad</button>
+      <Button 
+        goodHandler={goodHandler}
+        badHandler={badHandler}
+        neutralHandler={neutralHandler}
+      />
+      <h1>Statistics</h1>
       {statInfo}
     </div>
   )
